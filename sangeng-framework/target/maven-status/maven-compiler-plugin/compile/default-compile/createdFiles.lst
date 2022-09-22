@@ -1,4 +1,9 @@
-com\sangeng\service\ArticleService.class
+com\sangeng\domain\entity\Category.class
+com\sangeng\domain\vo\CategoryVo.class
+com\sangeng\mapper\ArticleMapper.class
+com\sangeng\mapper\CategoryMapper.class
 com\sangeng\service\impl\ArticleServiceImpl.class
 com\sangeng\domain\entity\Article.class
-com\sangeng\mapper\ArticleMapper.class
+com\sangeng\service\ArticleService.class
+com\sangeng\service\CategoryService.class
+com\sangeng\service\impl\CategoryServiceImpl.class

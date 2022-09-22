@@ -1,6 +1,7 @@
 package com.sangeng.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.sangeng.domain.ResponseResult;
 import com.sangeng.domain.entity.Category;
 
 
@@ -11,5 +12,7 @@ import com.sangeng.domain.entity.Category;
  * @since 2022-09-22 15:14:30
  */
 public interface CategoryService extends IService<Category> {
+
+    ResponseResult getCategoryList();
 
 }
