@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sangeng.constants.SystemConstants;
 import com.sangeng.domain.ResponseResult;
 import com.sangeng.domain.entity.Article;
+import com.sangeng.domain.entity.Category;
+import com.sangeng.domain.vo.ArticleDetailVo;
 import com.sangeng.domain.vo.ArticleListVo;
 import com.sangeng.domain.vo.HotArticleVo;
 import com.sangeng.domain.vo.PageVo;
@@ -66,5 +68,22 @@ private CategoryService categoryService;
         PageVo pageVo = new PageVo(articleListVos,page.getTotal());
 
         return ResponseResult.okResult(pageVo);
+    }
+
+    @Override
+    public ResponseResult getArticleDetail(Long id) {
+        //工具ID查询文章
+        Article article=getById(id);
+
+        //转换成VO
+        ArticleDetailVo articleDetailVo = BeanCopyUtils.copyBean(article, ArticleDetailVo.class);
+
+        //根据分类ID查询分类名
+        Long categoryId = articleDetailVo.getCategoryId();
+        Category category = categoryService.getById(categoryId);
+        if (category!=null){
+            articleDetailVo.setCategoryName(category.getName());
+        }
+        return ResponseResult.okResult(articleDetailVo);
     }
 }
