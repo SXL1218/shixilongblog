@@ -13,16 +13,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/article")
 public class ArticleController {
-
    @Autowired
     private ArticleService articleService;
-   /*@GetMapping("/list")
-   public List<Article> test(){
-       return articleService.list();
-   }*/
     @GetMapping("/hotArticleList")
     public ResponseResult hotArticleList(){
         ResponseResult result=  articleService.hotArticleList();
         return result;
+    }
+    @GetMapping("/articleList")
+    public ResponseResult articleList(Integer pageNum,Integer pageSize,Long categoryId){
+     return   articleService.articleList(pageNum,pageSize,categoryId);
     }
 }
