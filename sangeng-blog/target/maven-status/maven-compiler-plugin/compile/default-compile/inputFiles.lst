@@ -1,2 +1,6 @@
 D:\工作\SGBlog\sangeng-blog\src\main\java\com\sangeng\SanGengBlogApplication.java
 D:\工作\SGBlog\sangeng-blog\src\main\java\com\sangeng\controller\ArticleController.java
+D:\工作\SGBlog\sangeng-blog\src\main\java\com\sangeng\config\SecurityConfig.java
+D:\工作\SGBlog\sangeng-blog\src\main\java\com\sangeng\controller\BlogLoginController.java
+D:\工作\SGBlog\sangeng-blog\src\main\java\com\sangeng\controller\CategoryController.java
+D:\工作\SGBlog\sangeng-blog\src\main\java\com\sangeng\controller\LinkController.java
