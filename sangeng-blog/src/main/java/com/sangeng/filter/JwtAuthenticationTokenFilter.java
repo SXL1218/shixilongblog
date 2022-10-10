@@ -36,6 +36,9 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
+
+
+        
         //解析获取userid
         Claims claims = null;
         try {
