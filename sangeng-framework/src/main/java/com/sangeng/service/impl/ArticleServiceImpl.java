@@ -23,7 +23,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
-public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> implements ArticleService {
+public class
+ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> implements ArticleService {
 @Autowired
 private CategoryService categoryService;
     @Override
