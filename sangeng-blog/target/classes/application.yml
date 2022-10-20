@@ -20,5 +20,8 @@ mybatis-plus:
         logic-delete-value: 1
         logic-not-delete-value: 0
         id-type: auto
-
+oss:
+  accessKey: Xh52lLuLvl7Gnl2IVeRCfQL2c17_aQuy0UTSWDly
+  secretKey: 89-Y5y15QDlNOD_a77Gb5vvxzQkHsbQZmwrLE3oY
+  bucket: shixilong-blog
 
