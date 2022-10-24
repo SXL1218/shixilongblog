@@ -15,6 +15,7 @@ import com.sangeng.mapper.ArticleMapper;
 import com.sangeng.service.ArticleService;
 import com.sangeng.service.CategoryService;
 import com.sangeng.utils.BeanCopyUtils;
+import com.sangeng.utils.RedisCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,8 @@ public class
 ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> implements ArticleService {
 @Autowired
 private CategoryService categoryService;
+@Autowired
+private RedisCache redisCache;
     @Override
     public ResponseResult hotArticleList() {
 
@@ -73,18 +76,29 @@ private CategoryService categoryService;
 
     @Override
     public ResponseResult getArticleDetail(Long id) {
-        //工具ID查询文章
-        Article article=getById(id);
-
+        //根据id查询文章
+        Article article = getById(id);
+        //从redis中获取viewCount
+        Integer viewCount = redisCache.getCacheMapValue("article:viewCount", id.toString());
+        article.setViewCount(viewCount.longValue());
         //转换成VO
         ArticleDetailVo articleDetailVo = BeanCopyUtils.copyBean(article, ArticleDetailVo.class);
-
-        //根据分类ID查询分类名
+        //根据分类id查询分类名
         Long categoryId = articleDetailVo.getCategoryId();
         Category category = categoryService.getById(categoryId);
-        if (category!=null){
+        if(category!=null){
             articleDetailVo.setCategoryName(category.getName());
         }
+        //封装响应返回
         return ResponseResult.okResult(articleDetailVo);
     }
+
+
+    @Override
+    public ResponseResult updateViewCount(Long id) {
+        //更新redis中对应 id的浏览量
+        redisCache.incrementCacheMapValue("article:viewCount",id.toString(),1);
+        return ResponseResult.okResult();
+    }
+
 }
